@@ -8,7 +8,7 @@
     'name': 'Sifei  Connector CFDI 3.3',
     'version': '0.1',
     'description': '''
-    Factura Electronica para Mexico (CFDI 3.3): Conector con SIFEI.
+    Factura Electronica para Mexico (CFDI 3.3): Conector con SIFEI  .
     ''',
     'category': 'Accounting',
     'author': 'Salvador Daniel Pelayo Gómez tekniu',
