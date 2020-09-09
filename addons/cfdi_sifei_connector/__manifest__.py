@@ -14,7 +14,7 @@
     'author': 'Salvador Daniel Pelayo Gómez tekniu',
     'website': 'https://tekniu.mx',
     'depends': [
-        'cfdi_invoice'
+        'cfdi_tekniu'
     ],
     'external_dependencies': {
     },
