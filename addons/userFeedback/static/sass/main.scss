@@ -1,0 +1,367 @@
+* {
+    box-sizing: border-box;
+}
+
+.icon {
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.highlighter_wrapper {
+    display: inline-block;
+}
+
+.change_element {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(100%, 100%);
+}
+
+.highlighter_wrapper ~ .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.highlighter_wrapper:hover ~ .tooltiptext {
+    visibility: visible;
+
+}
+
+.highlighter_wrapper ~ .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: #f8fbfc;
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 8px;
+    position: absolute;
+    z-index: 1;
+    top: 7px;
+    left: calc(10px + 2em);
+}
+
+.icon:focus {
+    outline: none;
+}
+
+.feedback {
+    font-family: sans-serif;
+    position: relative;
+    color: transparent;
+    opacity: 1;
+
+    &__top { 
+        color: #f8fbfc;
+        background-color: #4d5051;
+        position: fixed;
+        bottom: 0;
+        transition: all .1s ease-out;
+        right: 20%;
+        cursor: pointer;
+        border-radius: 3px;
+        
+        &_text {
+            font-size: 0.8125em;
+            margin: 0;
+            padding: 10px;
+            border-radius: 3px;
+
+            & i {
+                padding-left: 3px;
+            }
+
+            &--btn {
+                background: #4d5051;
+                color: #f8fbfc;
+            }
+        }
+    }
+
+    &__cancel {
+        background-color: #DFA941; //DFA941
+        color: #f8fbfc;
+        position: fixed;
+        bottom: 0;
+        transition: all .1s ease-out;
+        right: 50%;
+        transform: translateX(50%);
+        cursor: pointer;
+        border-radius: 3px;
+        display: none;
+        margin: 0;
+        padding: 10px;
+        font-size: 0.9em;
+
+        & i {
+            margin-left: 5px;
+        }
+    }
+
+    &__bottom { 
+        background-color: #f8fbfc;
+        padding: 10px 10px 5px 10px;
+        width: 326px;
+        min-height: 170px;
+        height: auto;
+        position: fixed;
+        bottom: 40px;
+        right: 20%;
+        display: inline-block;
+        border-radius: 5px;
+        transition: visibility .2s;
+        box-shadow: 0 0 10px 2px #4d5051;
+        z-index: 100;
+
+        &_close {
+            background-color: transparent;
+            color: #4d5051;
+            text-decoration: none;
+            text-align: right;
+            font-size: 1em;
+            align-self: flex-end;
+        }
+
+        &_close:focus {
+            outline: none;
+        }
+
+        &_text {
+            font-size: 1em;
+            text-align: center;
+            color: #4d5051;
+            margin: 0;
+            padding: 10px 0 20px 0;
+        }
+
+        &_rating {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-around;
+
+            & > * {
+                font-size: 2.3em;
+                background-color: transparent;
+                color: #4d5051; 
+            }
+
+            & .fa-sad-tear:hover {
+                color: #ff4545;
+            }
+
+            & .fa-frown:hover {
+                color: 	#ffa534;
+            }
+
+            & .fa-meh:hover {
+                color: #ffe234;
+            }
+
+            & .fa-smile:hover {
+                color: #b7dd29
+            }
+
+            & .fa-grin:hover {
+                color: #57e32c;
+            }
+
+            &-label {
+                cursor: pointer;
+            }
+
+            &--radio {
+                display: none;
+            }
+
+            &--radio:checked + label {
+                & .fa-sad-tear {
+                    color: #ff4545;
+                }
+
+                & .fa-frown {
+                    color: 	#ffa534;
+                }
+    
+                & .fa-meh {
+                    color: #ffe234;
+                }
+    
+                & .fa-smile {
+                    color: #b7dd29
+                }
+    
+                & .fa-grin {
+                    color: #57e32c;
+                }
+
+                & > .u-triangle {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &_description {
+
+            height: 0px;
+            width: calc(100% + 2 * 10px);
+            align-self: center;
+            overflow: hidden;
+            position: relative;
+
+            &--area {
+                color: #f8fbfc;
+                background-color: #4d5051;
+                padding: 10px;
+                font-size: .9em;
+                border: solid 0px transparent;
+                resize: none;
+                width: 100%;
+                
+            }
+
+            &--area:focus {
+                outline: none;
+            }
+
+            &--area::placeholder {
+                color: #a0a0a0;
+            }
+
+            & .fa-border-style {
+                color: #f8fbfc;
+                font-size: 1.5em;
+                cursor: pointer;
+            }
+
+            &--highlight {
+                background-color: #4d5051;
+                padding: 10px;
+                display: inline-block;
+                position: relative;
+                width: 100%;
+                margin-top: -5px;
+
+                & > .fa-border-style ~ .tooltiptext::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    right: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent black transparent transparent;
+                }
+
+                .fa-border-style:hover ~ .tooltiptext {
+                    visibility: visible;
+
+                }
+
+                & > .fa-border-style ~ .tooltiptext {
+                    visibility: hidden;
+                    width: auto;
+                    background-color: black;
+                    color: #f8fbfc;
+                    font-size: 0.9em;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 8px;
+                    position: absolute;
+                    z-index: 1;
+                    top: 7px;
+                    left: calc(10px + 2em);
+                }
+            }
+
+            &--send {
+                display: inline-block;
+                border: none;
+                padding: 5px 8px;
+                margin-top: 4px;
+                text-decoration: none;
+                background: #7d7d7d;
+                color: #f8fbfc;
+                font-family: sans-serif;
+                font-size: 1rem;
+                cursor: pointer;
+                text-align: center;
+                border-radius: 4px;
+                position: absolute;
+                bottom: 5px;
+                right: 20px;
+            }
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        transition: all .2s;
+    }
+}
+
+.u-triangle {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    border-bottom: 5px solid #4d5051;
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.u-highlighted,
+.u-outline {
+    z-index: 99;
+    outline-color: #a0a0a0;
+    outline-width: 3px;
+    outline-style: dashed;
+}
+
+.u-border {
+    border: 5px solid #f3f702;
+}
+
+.u-box-shadow {
+    box-shadow: 3px 3px 5px 100000px #303030c1;
+}
+
+.fas-text {
+    display: inline-block;
+    font-size: 0.9em;
+    color: #4d5051;
+    transform: translate(11px, -4px);
+}
+
+// TESTING PURPOSES
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    height: 300px;
+    flex-grow: 1;
+    background-color: red;
+}
+
+.right {
+    height: 300px;
+    flex-grow: 1;
+    background-color: blue;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="pac_config_form_view" model="ir.ui.view">
+        <field name="name">pac.config.form.view</field>
+        <field name="model">cfdi.pac.config</field>
+        <field name="inherit_id" ref="cdfi_invoice.cfdi_pac_config_view_form"/>
+        <field name="arch" type="xml">
+            <field name="password" position="after">
+                <field name="id_equipo"/>
+            </field>
+        </field>
+    </record>
+</odoo>

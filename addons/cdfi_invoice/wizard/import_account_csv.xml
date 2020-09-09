@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_import_xlsx_form_view" model="ir.ui.view">
+        <field name="name">Import CSV</field>
+        <field name="model">account.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importar">
+                <group>
+                    <group>
+                        <field name="archivo" required="1" filename="file_name"/>
+                    </group>
+                    <group>
+                        <field name="fecha_factura" required="1" />
+                </group>
+                </group>
+                <group>
+                    <field name="linea_ids">
+                        <tree>
+                            <field name="meli_id"/>
+                            <field name="razon"/>
+                            <field name="rfc"/>
+                            <field name="uso"/>
+                            <field name="pago"/>
+                            <field name="email"/>
+                            <field name="facturado"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="create_fac" string="Crear Facturas" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" class="oe_link" special="cancel" />
+                </footer>
+           </form>
+        </field>
+    </record>
+
+        <record id="view_import_csv_action" model="ir.actions.act_window">
+        <field name="name">Importar csv</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+        <menuitem name="Importar" id="view_import_csv_menu" parent="account.menu_finance_receivables"
+              action="view_import_csv_action"/>
+</odoo>

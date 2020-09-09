@@ -1,0 +1,1 @@
+# from . import image_sale_format_view

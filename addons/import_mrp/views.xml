@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="import_mrp_wizard_form" model="ir.ui.view">
+        <field name="name">Import Wizard</field>
+        <field name="model">import.mrp.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="csv_file"></field>
+                </group>
+                <button name="do_process" string="Importar" type="object"></button>
+            </form>
+        </field>
+    </record>
+    <record id="action_listas_wizard" model="ir.actions.act_window">
+        <field name="name">Importar Listas de Materiales </field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.mrp.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+
+      <menuitem id="import_listas_wizard" name="Importar Listas de Materiales" parent="base.menu_users" action="action_listas_wizard"/>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="demo_certificate_tekniu" model="l10n_mx_edi.certificate">
+            <field name="content" type="base64" file="cfdi_tekniu/data/pac_credenciales/certificate.cer"/>
+            <field name="key" type="base64" file="cfdi_tekniu/data/pac_credenciales/certificate.key"/>
+            <field name="password">12345678a</field>
+        </record>
+
+        <record id="base.main_partner" model="res.partner">
+            <field name="vat">EKU9003173C9</field>
+            <field name="street_name">Avenida Venezuela</field>
+            <field name="street2">Las Americas</field>
+            <field name="street_number">502</field>
+            <field name="zip">58256</field>
+            <field name="city">Morelia</field>
+            <field name="state_id" ref="base.state_mx_son"/>
+            <field name="country_id" ref="base.mx"/>
+        </record>
+
+        <record id="base.main_company" model="res.company">
+            <field name="l10n_mx_edi_pac">tekniu</field>
+            <field name="l10n_mx_edi_pac_test_env">True</field>
+            <field name="l10n_mx_edi_fiscal_regime">601</field>
+            <field name="l10n_mx_edi_certificate_ids" eval="[(6, 0, [ref('demo_certificate_tekniu')])]"/>
+        </record>
+    </data>
+</odoo>

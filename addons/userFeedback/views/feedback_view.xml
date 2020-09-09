@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="user_feedback_list">
+            <field name="name">user.feedback.list</field>
+            <field name="model">user.feedback.model</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="0" duplicate="0">
+                    <field name="name"/>
+                    <field name="rating"/>
+                    <field name="description"/>
+                    <field name="user"/>
+                    <field name="state"/>
+                    <field name="coord_vert"/>
+                    <field name="coord_hor"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="user_feedback_form">
+            <field name="name">user.feedback.form</field>
+            <field name="model">user.feedback.model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="rating" readonly="1"/>
+                                <field name="description" readonly="1"/>
+                                <field name="url" readonly="1"/>
+                                <field name="user"/>
+                            </group>
+                            <group>
+                                <field name="coord_vert"/>
+                                <field name="coord_hor"/>
+                                <field name="state"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="response"/>
+                        </group>
+                        <group>
+                            <field name="screenshot" widget="image"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="send_mail_feed_form_inherit" model="ir.ui.view">
+            <field name="inherit_id" ref="user_feedback_form"/>
+            <field name="model">user.feedback.model</field>
+            <field name="arch" type="xml">
+                <!-- Add a header with button to the existing view -->
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button type="object" name="send_mail" class="btn-primary"
+                                icon="fa-envelope text-default" string="Responder"
+                                help="Envía un correo de respuesta." attrs="{'invisible':[('state','=','attended')]}"
+                        />
+                    </header>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="user_feedback_view_kanban" model="ir.ui.view">
+            <field name="name">user_feedback.kanba.view</field>
+            <field name="model">user.feedback.model</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="screenshot"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override"
+                                 style="border-style: solid; border-width: 1px; border-color:red;">
+                                <div class="row">
+                                    <a type="open">
+                                        <img height="300" width="300"
+                                             t-att-src="kanban_image('user_feedback.model', 'screenshot', record.id.value)"/>
+                                    </a>
+                                </div>
+                                <br></br>
+                                <p>
+                                    <div class="oe_kanban_details">
+                                        <field name="name"/>
+                                    </div>
+                                </p>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="user_feedback_action_window">
+            <field name="name">Feedback de usuario</field>
+            <field name="res_model">user.feedback.model</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="user_feedback_action_window_attended">
+            <field name="name">Feedback de usuario atendido</field>
+            <field name="res_model">user.feedback.model</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[('state','=', 'attended')]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="user_feedback_action_window_non_attended">
+            <field name="name">Feedback de usuario por atender</field>
+            <field name="res_model">user.feedback.model</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[('state','=', 'non_attended')]</field>
+        </record>
+
+        <menuitem name="Feedback de usuario" id="user_feedback_menu_root" parent="base.menu_custom"
+                  action="user_feedback_action_window"/>
+        <menuitem name="Contestados" id="user_feedback_menu_attended" parent="user_feedback_menu_root"
+                  action="user_feedback_action_window_attended"/>
+        <menuitem name="Sin Contestar" id="user_feedback_menu_non_attended" parent="user_feedback_menu_root"
+                  action="user_feedback_action_window_non_attended"/>
+    </data>
+</odoo>

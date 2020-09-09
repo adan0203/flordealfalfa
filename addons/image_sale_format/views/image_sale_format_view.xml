@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="mcm_image_sale" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//th[@name='th_description']" position="before">
+                 <th name="th_image_head">Modelo</th>
+            </xpath>
+            <xpath expr="//th[@name='th_description']" position="after">
+                 <th name="th_image_head">Imagen</th>
+            </xpath>
+
+            <xpath expr="//td[@name='td_name']" position="before">
+                <td name="td_model"><span t-field="line.product_id.default_code"/></td>
+            </xpath>
+
+            <xpath expr="//td[@name='td_name']" position="after">
+                <td t-if="line.product_id.product_tmpl_id.image_1920" name="td_name_img">
+                    <img t-att-src="image_data_uri(line.product_id.product_tmpl_id.image_1920)" style="width: 100px;" alt="Img"/>
+                </td>
+                <td t-if="not line.product_id.product_tmpl_id.image_1920" name="td_name_img">
+                </td>
+            </xpath>
+
+        </template>
+</odoo>
