@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Pasarela Tekniu',
+    'name': 'Pasarela Tekniu mx',
     'summary': """
        Facturacion México Tekniu 
     """,
